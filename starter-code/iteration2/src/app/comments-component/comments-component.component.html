@@ -1,17 +1,26 @@
 <h2>Comments:</h2>
 
-<p>Life is Life</p>
-<p>All you need is love</p>
+<div>
+  <ul *ngFor="let i of comments , let index = index , let odd = odd , let even = even, let first = first, let last = last">
+    <div [ngStyle]="{ 'background-color': first ? 'red' : last ? 'green' : even ? 'grey' : 'blue' }">
+      <div>{{index}} - Name: {{i.name}}</div>
+      <div>Comment: {{i.content}}</div>
+    </div>
+  </ul>
+</div>
 
-<form action="">
-  <div>
-    <label for="Name"></label>
-    <input type="text">
-  </div>
-  <br>
-  <div>
-    <label for="bla"></label>
-    <textarea name="Comment here" id="" cols="100" rows="20"></textarea>
-  </div>
-<input type="Submit" name="" id="">
-</form>
+<div class="formulario">
+  
+  <form action="">
+    <div>
+      <label input> Name: </label>
+      <input name="name" [(ngModel)]="name" placeholder="Name *" type="text" (keyup)="recordAllTheKeyStrokes($event)">
+    </div>
+    <br>
+    <div>
+      <label input> Comment: </label>
+      <input name="content" [(ngModel)]="content" placeholder="Comment here *" type="text" (keyup)="recordAllTheKeyStrokes($event)">
+    </div>
+    <button (click)="addComment(name, content)">Submit</button>
+  </form>
+</div>
